@@ -11,6 +11,6 @@ import com.photo.app.users.model.AlbumResponseModel;
 @FeignClient(name="albums-ws")
 public interface AlbumsServiceClient {
 
-	@GetMapping("/users/{id}/albumss")
+	@GetMapping("/users/{id}/albums")
 	public List<AlbumResponseModel> getAlbums(@PathVariable String id);
 }
