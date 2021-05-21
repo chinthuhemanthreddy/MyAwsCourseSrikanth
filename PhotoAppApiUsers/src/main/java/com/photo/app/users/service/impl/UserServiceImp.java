@@ -26,8 +26,10 @@ import com.photo.app.users.service.UserService;
 import com.photo.app.users.shared.UserDto;
 
 import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class UserServiceImp implements UserService {
 	
 	UserRepository userRepository;
@@ -104,7 +106,9 @@ public class UserServiceImp implements UserService {
 		UserDto dto = new  ModelMapper().map(entity, UserDto.class);
 		List<AlbumResponseModel> albumList = null;
 		//try {
+		log.info("Zipkin -> before calling the albums microservice ::: ");
 		albumList = albumsServiceClient.getAlbums(userId);
+		log.info("Zipkin -> after calling the albums microservice ::: "+albumList);
 		/*}catch(FeignException e) {
 			System.out.println("feign exception in service class..."+e.getMessage());
 		}*/
